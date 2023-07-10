@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TextBasedGame
 {
@@ -12,7 +13,8 @@ namespace TextBasedGame
         static void Main(string[] args)
         {
             Player player = new Player();
-            player.StartGame();
+            
+            
         }
     }
 }

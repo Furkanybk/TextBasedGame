@@ -17,6 +17,10 @@ namespace TextBasedGame
         public int Intelligent = 5;
         public string roleType;
         private string Name;
+        public int EnemyAttack = 0;
+        public int EnemyDefence = 0;
+        public Random random = new Random();
+        public int damage;
 
         public void Initialize(string name, string roleType)
         {
@@ -24,14 +28,28 @@ namespace TextBasedGame
             switch (roleType)
             {
                 case "Brawler":
+                    Health = 100;
+                    Attack = 5;
+                    Defence = 5;
                     Strength = 15;
                     Defence = 15;
+                    Intelligent = 5;
                     break;
                 case "Wizard":
+                    Health = 100;
+                    Attack = 5;
+                    Defence = 5;
                     Intelligent = 20;
+                    Strength = 5;
+                    Agility = 5;
                     break;
                 case "Thief":
+                    Health = 100;
+                    Attack = 5;
+                    Defence = 5;
                     Agility = 20;
+                    Strength = 5;
+                    Intelligent = 5;
                     break;
             }
 
@@ -43,17 +61,26 @@ namespace TextBasedGame
             Console.WriteLine("TextBasedGame" +
                 "\nWelcome the TextBasedGame , enter a name ");
             Name = Console.ReadLine();
-            Console.WriteLine("Welcome"+ Name + "\nSelect a class \n1-Brawler\n2-Wizard\n3-Thief");
+            Console.WriteLine("Welcome " + Name + "\n Select a class \n-Brawler\n-Wizard\n-Thief");
             roleType = Console.ReadLine();
-            Console.WriteLine(roleType + Name);
         }
 
         public void GetHit()
         {
             //burada can azalıcak işte defansa göre alınan hasar aazalabilir.
-
+            damage = EnemyAttack - Defence;
             Console.WriteLine(Name + " hasar aldı");
         }
+
+        public void Enemy()
+        {
+            Health = 100;
+            EnemyAttack = random.Next(10);
+            EnemyDefence = random.Next(10);
+
+        }
+
+
 
     }
 }
