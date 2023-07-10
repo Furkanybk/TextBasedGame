@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using TextBasedGame.Managers;
 
 namespace TextBasedGame
 {
@@ -12,9 +7,9 @@ namespace TextBasedGame
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
-            
-            
+            GameManager gameManager = new GameManager();
+            gameManager.Initialize();
+            Console.ReadKey();
         }
     }
 }
