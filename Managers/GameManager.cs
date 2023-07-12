@@ -5,6 +5,7 @@ namespace TextBasedGame.Managers
     public class GameManager
     {
         private Player _player;
+        private Enemy _enemy;
 
         //Constructor method, bu method new denilerek bir değişken oluştuğunda çalışır.
         public GameManager()

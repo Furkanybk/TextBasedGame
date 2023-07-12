@@ -30,10 +30,25 @@ namespace TextBasedGame
             switch (_roleType)
             {
                 case RoleType.Brawler:
+                    _strength = 10;
+                    _health = 100;
+                    _defence = 5;
+                    _intelligent = 5;
+                    _agility = 5;
                     break;
                 case RoleType.Wizard:
+                    _strength = 5;
+                    _health = 100;
+                    _defence = 5;
+                    _intelligent = 10;
+                    _agility = 5;
                     break;
                 case RoleType.Thief:
+                    _strength = 5;
+                    _health = 100;
+                    _defence = 5;
+                    _intelligent = 5;
+                    _agility = 10;
                     break;
             }
         }
