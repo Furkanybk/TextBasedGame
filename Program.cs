@@ -8,8 +8,9 @@ namespace TextBasedGame
         static void Main(string[] args)
         {
             GameManager gameManager = new GameManager();
-            gameManager.Initialize();
+            gameManager.MainMenu();
             Console.ReadKey();
+            
         }
     }
 }

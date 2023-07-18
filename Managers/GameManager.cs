@@ -41,5 +41,28 @@ namespace TextBasedGame.Managers
                 }
             }
         }
+        public bool MainMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("TextBasedGame:");
+            Console.WriteLine("1) Start");
+            Console.WriteLine("2) Leaderboard");
+            Console.WriteLine("3) Exit");
+            Console.Write("\r\nSelect an option: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Initialize();
+                    return true;
+                case "2":
+
+                    return true;
+                case "3":
+                    return false;
+                default:
+                    return true;
+            }
+        }
     }
 }
