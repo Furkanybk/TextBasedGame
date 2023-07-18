@@ -5,23 +5,46 @@ namespace TextBasedGame.Managers
     public class GameManager
     {
         private Player _player;
-        private Enemy _enemy;
-
-        //Constructor method, bu method new denilerek bir değişken oluştuğunda çalışır.
-        public GameManager()
-        {
-            Console.WriteLine("Burası constructer method!");
-            _player = new Player();
-        }
 
         public void Initialize()
         {
-            StartGame();
+            //MainMenu Cycle
+            while (true)
+            {
+                PrintMainMenu();
+            }
         }
 
-        private void StartGame()
+        public void PrintMainMenu()
         {
-            Console.Write("Name:");
+            Console.Clear();
+            Console.WriteLine("TextBasedGame:");
+            Console.WriteLine("1) Start Game");
+            Console.WriteLine("2) Leaderboard");
+            Console.WriteLine("3) Exit");
+            Console.Write("\r\nSelect an option: ");
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    PlayerInitCycle();
+                    StartGame();
+                    break;
+                case "2":
+                    LeaderBoard();
+                    break;
+                case "3":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.Write("Please choose valid option");
+                    break;
+            }
+        }
+
+        private void PlayerInitCycle()
+        {
+            _player = new Player();
+            Console.Write("Please choose your name:");
             string name = Console.ReadLine();
 
             while (true)
@@ -41,28 +64,17 @@ namespace TextBasedGame.Managers
                 }
             }
         }
-        public bool MainMenu()
+
+        private void StartGame()
         {
-            Console.Clear();
-            Console.WriteLine("TextBasedGame:");
-            Console.WriteLine("1) Start");
-            Console.WriteLine("2) Leaderboard");
-            Console.WriteLine("3) Exit");
-            Console.Write("\r\nSelect an option: ");
+            Console.Write("StartGame");
+            Console.ReadKey();
+        }
 
-            switch (Console.ReadLine())
-            {
-                case "1":
-                    Initialize();
-                    return true;
-                case "2":
-
-                    return true;
-                case "3":
-                    return false;
-                default:
-                    return true;
-            }
+        private void LeaderBoard()
+        {
+            Console.Write("LeaderBoard");
+            Console.ReadKey();
         }
     }
 }
