@@ -8,7 +8,6 @@ namespace TextBasedGame
         Wizard,
         Thief
     }
-
     public class Player
     {
         private string _name;
@@ -51,6 +50,12 @@ namespace TextBasedGame
                     _agility = 10;
                     break;
             }
+        }
+        
+        public void GetHit() 
+        {
+            Enemy enemy = new Enemy();
+            enemy.EnemyHealth 
         }
     }
 }
