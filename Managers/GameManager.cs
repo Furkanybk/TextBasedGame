@@ -4,12 +4,12 @@ namespace TextBasedGame.Managers
 {
     public class GameManager
     {
+        private GameCycle _gameCycle;
         private Player _player;
-        private Enemy _enemy;
-        GameCycle gameCycle = new GameCycle();
-        FightCycle fightCycle = new FightCycle();
+
         public void Initialize()
         {
+            _gameCycle = new GameCycle();
             //MainMenu Cycle
             while (true)
             {
@@ -28,10 +28,7 @@ namespace TextBasedGame.Managers
             switch (Console.ReadLine())
             {
                 case "1":
-                    PlayerInitCycle();
-                   gameCycle.CreateEnemy(1);
                     StartGame();
-                    gameCycle.GameUpdate(_player);
                     break;
                 case "2":
                     LeaderBoard();
@@ -43,6 +40,17 @@ namespace TextBasedGame.Managers
                     Console.Write("Please choose valid option");
                     break;
             }
+        }
+
+        private void StartGame()
+        {
+            PlayerInitCycle();
+        }
+
+        private void LeaderBoard()
+        {
+            Console.Write("LeaderBoard");
+            Console.ReadKey();
         }
 
         private void PlayerInitCycle()
@@ -67,17 +75,8 @@ namespace TextBasedGame.Managers
                     Console.WriteLine("Please enter valid roleType!\n");
                 }
             }
-        }
 
-        private void StartGame()
-        {
-            fightCycle.Update();
+            _gameCycle.Initialize(_player);
         }
-
-        private void LeaderBoard()
-        {
-            Console.Write("LeaderBoard");
-            Console.ReadKey();
-        }       
     }
 }

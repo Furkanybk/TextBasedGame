@@ -11,36 +11,59 @@ namespace TextBasedGame
 
     public class Player
     {
-        public string _name;
-        public RoleType _roleType;
+        #region Variable Field
 
-        public int Health;
-        public int Damage;
-        public int Defence;
+        private string _name;
+        private RoleType _type;
 
-        public Player()
-        {
-            Health = 100;
-            Damage = 20;
-            Defence = 10;
-        }
+        private int _health;
+        private int _defence;
+        private int _attack;
 
-        public void Initialize(string name, int roleType)
+        #endregion
+
+        #region Property Field
+
+        public int Health => _health;
+        public int Defence => _defence;
+        public int Attack => _attack;
+
+        #endregion
+
+
+        #region Method Field
+
+        public void Initialize(string name, int type)
         {
             _name = name;
-            _roleType = (RoleType)roleType;
+            _type = (RoleType)type;
+            SetPlayerStats(100, 20, 10);
         }
-        public int GetHit(int damage)
+
+        public void SetPlayerStats(int health, int defence, int attack)
         {
-            if (damage > Health) 
-            {
-                Health = 0;
-                return 0;
-            }
-            damage -= Defence;
-            Health -= damage;
-            return Health;
+            _health = health;
+            _defence = defence;
+            _attack = attack;
         }
-      
+
+        public void DealDamageEnemy(BaseEnemy enemy)
+        {
+            int pureDamage = _attack - enemy.Defence;
+            enemy.GetHit(pureDamage);
+        }
+
+        public void GetHit(int damage)
+        {
+            if (_health < damage)
+            {
+                _health = 0;
+                return;
+            }
+
+            _health -= damage;
+        }
+
+        #endregion
     }
 }

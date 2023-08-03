@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Enemies\WitchEnemy.cs" />
+    <Compile Include="Enemies\BanditEnemy.cs" />
     <Compile Include="Managers\FightCycle.cs" />
     <Compile Include="Managers\GameCycle.cs" />
     <Compile Include="Managers\GameManager.cs" />
+    <Compile Include="Enemies\BaseEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

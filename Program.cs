@@ -1,5 +1,4 @@
-﻿using System;
-using TextBasedGame.Managers;
+﻿using TextBasedGame.Managers;
 
 namespace TextBasedGame
 {

@@ -1,49 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TextBasedGame.Managers
 {
     public class FightCycle
     {
+        private Player _player;
+        private BaseEnemy _enemy;
 
-        private Player _player = new Player();
-        private Enemy _enemy = new Enemy();
-
-        public void StartFight(Player player, Enemy enemy)
+        public void StartCycle(Player player, BaseEnemy enemy)
         {
             _player = player;
-             Update();
+            _enemy = enemy;
+            UpdateCycle();
         }
 
-        public void Update()
+        private void UpdateCycle()
         {
-            while (_player.Health > 0 && _enemy.Health > 0)
+            while (true)
             {
-                Console.WriteLine("1) Attack");
-                Console.Write("\r\nSelect an option: ");
-                switch (Console.ReadLine())
-                {
-                    case "1":
-                        _enemy.Health = _enemy.GetHit(_player.Damage);
-                        Console.WriteLine("The enemy has " + _enemy.Health + " health left.");
-                        _player.Health = _player.GetHit(_enemy.Attack);
-                        Console.WriteLine("You have " + _player.Health + " health left.");
-                        break;
-                    default:
-                        Console.Write("Please choose valid option");
-                        break;
-                }
+                if (_player.Health == 0 || _enemy.Health == 0) break;
+
+                _player.DealDamageEnemy(_enemy);
+                _enemy.DealDamagePlayer(_player);
+
+                Console.WriteLine("Player Health:" + _player.Health);
+                Console.WriteLine("Enemy Health:" + _enemy.Health);
+
+                Console.ReadKey();
             }
+
+            EndCycle();
         }
 
-        public void EndFight()
+        private void EndCycle()
         {
-            Console.WriteLine("oyun bitti");
-            Console.ReadKey();
+            Console.WriteLine("Fight End");
         }
     }
 }
