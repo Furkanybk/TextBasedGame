@@ -5,7 +5,9 @@ namespace TextBasedGame.Managers
     public class GameManager
     {
         private Player _player;
-
+        private Enemy _enemy;
+        GameCycle gameCycle = new GameCycle();
+        FightCycle fightCycle = new FightCycle();
         public void Initialize()
         {
             //MainMenu Cycle
@@ -27,7 +29,9 @@ namespace TextBasedGame.Managers
             {
                 case "1":
                     PlayerInitCycle();
+                   gameCycle.CreateEnemy(1);
                     StartGame();
+                    gameCycle.GameUpdate(_player);
                     break;
                 case "2":
                     LeaderBoard();
@@ -67,14 +71,13 @@ namespace TextBasedGame.Managers
 
         private void StartGame()
         {
-            Console.Write("StartGame");
-            Console.ReadKey();
+            fightCycle.Update();
         }
 
         private void LeaderBoard()
         {
             Console.Write("LeaderBoard");
             Console.ReadKey();
-        }
+        }       
     }
 }

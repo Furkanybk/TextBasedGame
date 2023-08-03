@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enemy.cs" />
+    <Compile Include="Managers\FightCycle.cs" />
+    <Compile Include="Managers\GameCycle.cs" />
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

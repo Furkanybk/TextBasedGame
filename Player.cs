@@ -15,13 +15,13 @@ namespace TextBasedGame
         public RoleType _roleType;
 
         public int Health;
-        public int Attack;
+        public int Damage;
         public int Defence;
 
         public Player()
         {
             Health = 100;
-            Attack = 10;
+            Damage = 20;
             Defence = 10;
         }
 
@@ -30,11 +30,17 @@ namespace TextBasedGame
             _name = name;
             _roleType = (RoleType)roleType;
         }
-        
-        public void GetHit(int damage) 
+        public int GetHit(int damage)
         {
+            if (damage > Health) 
+            {
+                Health = 0;
+                return 0;
+            }
+            damage -= Defence;
             Health -= damage;
-            Console.WriteLine("Player get hit " + damage + " damage.");
+            return Health;
         }
+      
     }
 }
