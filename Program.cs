@@ -1,4 +1,7 @@
-﻿using TextBasedGame.Managers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TextBasedGame.Enemies;
 
 namespace TextBasedGame
 {
@@ -6,8 +9,14 @@ namespace TextBasedGame
     {
         static void Main(string[] args)
         {
-            GameManager gameManager = new GameManager();
-            gameManager.Initialize();
+            BaseEnemy enemy = new BaseEnemy();
+            BaseEnemy bandit = new BanditEnemy();
+            IEnemy interfaceEnemy = new BaseEnemy();
+
+            BaseEnemy castedFromInterface = (BaseEnemy)interfaceEnemy;
+            BanditEnemy castedFromInterface2 = (BanditEnemy)interfaceEnemy;
+
+            Console.ReadKey();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TextBasedGame
+namespace TextBasedGame.Enemies
 {
-    public class BaseEnemy
+    public class BaseEnemy : IEnemy
     {
         #region Variable Field
 
@@ -17,6 +17,7 @@ namespace TextBasedGame
         public int Health { get => _health; set { _health = value; } }
         public int Defence { get => _defence; set { _defence = value; } }
         public int Attack { get => _attack; set { _attack = value; } }
+        public int Chance { get; set; }
 
         #endregion
 
@@ -50,6 +51,11 @@ namespace TextBasedGame
         public virtual void Dead()
         {
             Console.WriteLine("Enemy dead.");
+        }
+
+        void IEnemy.Attack()
+        {
+
         }
 
         #endregion
