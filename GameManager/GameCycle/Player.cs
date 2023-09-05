@@ -14,10 +14,15 @@ namespace TextBasedGame.GameManager.GameCycle
         public virtual int AttackDamage { get; set; }
         public virtual int Defense { get; set; }
 
-        public int Hit(int damage)
+        public int Hit(int defense)
         {
+            AttackDamage = defense;
+            return AttackDamage;
+        }
 
-
+        public int GetHit(int damage)
+        {
+            Health -= damage;
             return Health;
         }
     }
