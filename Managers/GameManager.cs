@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using TextBasedGame.GameManager.FightCycle;
-using TextBasedGame.GameManager.GameCycle;
+using TextBasedGame.GameCycle;
 
-namespace TextBasedGame.GameManager
+namespace TextBasedGame.Manager
 {
-    internal class GameManage
+    public class GameManager
     {
         int choose;
         public Random random = new Random();
@@ -18,15 +13,15 @@ namespace TextBasedGame.GameManager
         FightManager fightManager = new FightManager();
         public void StartGame()
         {
-            Playerİnit();
+            PlayerInit();
             while (player.Health != 0)
             {
                 GetRandomEnemy();
-                fightManager.FightCycl(player, enemy);
+                fightManager.FightCycle(player, enemy);
             }
         }
 
-        public void Playerİnit()
+        public void PlayerInit()
         {
             Console.WriteLine("Enter a name: ");
             player.Name = Console.ReadLine();
@@ -42,13 +37,13 @@ namespace TextBasedGame.GameManager
                     switch (choose)
                     {
                         case 1:
-                            player = new LongSword();
+                            player.PlayerWeapon = new LongSword();
                             break;
                         case 2:
-                            player = new Dagger();
+                            player.PlayerWeapon = new Dagger();
                             break;
                         case 3:
-                            player = new Staff();
+                            player.PlayerWeapon = new Staff();
                             break;
                         default:
                             Console.WriteLine("Please choose a valid option: ");

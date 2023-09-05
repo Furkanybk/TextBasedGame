@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using TextBasedGame.GameManager.GameCycle;
+using TextBasedGame.GameCycle;
 
-namespace TextBasedGame.GameManager.FightCycle
+namespace TextBasedGame.Manager
 {
     internal class FightManager
     {
-        Player player = new LongSword();
-        Enemy enemy = new FireAnt();
         int room = 1;
-        public void FightCycl(Player player, Enemy enemy)
+
+        public void FightCycle(Player player, Enemy enemy)
         {
             Console.Clear();
             Console.WriteLine($"Room {room}");
@@ -22,15 +16,13 @@ namespace TextBasedGame.GameManager.FightCycle
             while (player.Health > 0 && enemy.Health > 0)
             {
                 // Oyuncu saldırır
-                int playerDamage = player.Hit(enemy.Defense);
-                enemy.GetHit(playerDamage);
-                Console.WriteLine($"{playerDamage} you damaged.  ant health: {enemy.Health}");
+                player.Hit(enemy);
                 Thread.Sleep(500);
+
                 // Düşman saldırır
-                int enemyDamage = enemy.Hit(player.Defense);
-                player.GetHit(enemyDamage);
-                Console.WriteLine($"{enemy.Role} {enemyDamage} damage to you. Your Health: {player.Health}");
+                enemy.Hit(player);
                 Thread.Sleep(500);
+
                 Console.WriteLine();
             }
 
@@ -38,7 +30,6 @@ namespace TextBasedGame.GameManager.FightCycle
             {
                 Console.WriteLine($"{player.Name} kazandı!");
                 room++;
-                
                 Console.ReadKey();
             }
             else

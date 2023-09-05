@@ -62,20 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameManager\FightCycle\FightManager.cs" />
-    <Compile Include="GameManager\GameCycle\Enemy.cs" />
-    <Compile Include="GameManager\GameCycle\Player.cs" />
-    <Compile Include="GameManager\GameManage.cs" />
+    <Compile Include="Managers\FightManager.cs" />
+    <Compile Include="GameCycle\Enemy.cs" />
+    <Compile Include="GameCycle\Player.cs" />
+    <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="GameManager\GameCycle\dialogues\dialogue.json" />
+    <None Include="JSON\dialogues\dialogue.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SaveManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
