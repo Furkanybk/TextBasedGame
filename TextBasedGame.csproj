@@ -72,6 +72,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="JSON\dialogues\dialogue.json" />
+    <None Include="JSON\Save.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

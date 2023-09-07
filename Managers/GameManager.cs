@@ -61,7 +61,6 @@ namespace TextBasedGame.Manager
         }
 
 
-
         public Enemy GetRandomEnemy()
         {
             // Rastgele bir düşman seçmek için Enemy alt sınıflarından birini seçebilirsiniz.
@@ -81,4 +80,3 @@ namespace TextBasedGame.Manager
         }
     }
 }
-

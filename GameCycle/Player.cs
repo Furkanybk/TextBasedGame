@@ -7,14 +7,14 @@ namespace TextBasedGame.GameCycle
         public string Name { get; set; }
         public int Health { get; private set; }
         public int AttackDamage { get; set; }
-        public int Defense 
-        { 
+        public int Defense
+        {
             get
             {
                 return _defense + PlayerWeapon.Defense;
             }
 
-            set => _defense = value; 
+            set => _defense = value;
         }
 
         public Weapon PlayerWeapon;
@@ -24,7 +24,7 @@ namespace TextBasedGame.GameCycle
         public Player()
         {
             Health = 100;
-            AttackDamage = 10;
+            AttackDamage = 3;
             Defense = 2;
         }
 
@@ -61,11 +61,19 @@ namespace TextBasedGame.GameCycle
 
     public class Dagger : Weapon
     {
-
+       public Dagger()
+        {
+            Attack = 10;
+            Defense = 10;
+        }
     }
 
     public class Staff : Weapon
     {
-
+        public Staff()
+        {
+            Attack = 10;
+            Defense = 10;
+        }
     }
 }
