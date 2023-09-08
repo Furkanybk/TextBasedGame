@@ -62,6 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameCycle\Character.cs" />
+    <Compile Include="GameCycle\Weapon.cs" />
     <Compile Include="Managers\FightManager.cs" />
     <Compile Include="GameCycle\Enemy.cs" />
     <Compile Include="GameCycle\Player.cs" />

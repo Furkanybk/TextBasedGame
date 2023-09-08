@@ -63,8 +63,7 @@ namespace TextBasedGame.Manager
 
         public Enemy GetRandomEnemy()
         {
-            // Rastgele bir düşman seçmek için Enemy alt sınıflarından birini seçebilirsiniz.
-            int randomNumber = random.Next(1, 4); // 1 ila 3 arasında rastgele bir sayı alır.
+            int randomNumber = random.Next(1, 4); 
 
             switch (randomNumber)
             {

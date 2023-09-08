@@ -1,27 +1,15 @@
 ﻿using System;
+using System.Numerics;
 
 namespace TextBasedGame.GameCycle
 {
-    public class Enemy
+    public class Enemy : Character 
     {
-        public int Health { get; set; }
-        public int AttackDamage { get; set; }
-        public int Defense { get; set; }
         public string Role { get; set; }
-
-        public void Hit(Player player)
+        Random random = new Random();
+        public int GetInput()
         {
-            int attack = AttackDamage;
-            attack -= player.Defense;
-            attack = attack < 0 ? 0 : attack;
-            player.GetHit(attack);
-            Console.WriteLine($"{attack} ant damaged.  you health: {player.Health}");
-        }
-
-        public void GetHit(int damage)
-        {
-            Health -= damage; 
-            Health = Health < 0 ? 0 : Health;
+            return random.Next(1, 4);
         }
     }
 
@@ -30,7 +18,7 @@ namespace TextBasedGame.GameCycle
         public FireAnt()
         {
             Health = 40;
-            AttackDamage = 6;
+            AttackDamage = 10;
             Defense = 1;
             Role = "FireAnt";
         }
@@ -40,8 +28,8 @@ namespace TextBasedGame.GameCycle
     {
         public TankAnt()
         {
-            Health = 50;
-            AttackDamage = 3;
+            Health = 60;
+            AttackDamage = 6;
             Defense = 5;
             Role = "TankAnt";
         }
@@ -52,7 +40,7 @@ namespace TextBasedGame.GameCycle
         public Ant()
         {
             Health = 50;
-            AttackDamage = 5;
+            AttackDamage = 7;
             Defense = 3;
             Role = "Ant";
         }
