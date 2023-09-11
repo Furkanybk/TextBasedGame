@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "dialogue": "If you want help, how can I assist you?"
+  },
+  {
+    "id": 2,
+    "dialogue": "You seem to be in a tough situation; I can help."
+  },
+  {
+    "id": 3,
+    "dialogue": "We can complete this journey together."
+  },
+  {
+    "id": 4,
+    "dialogue": "I'm here to empower you."
+  },
+  {
+    "id": 5,
+    "dialogue": "You look injured; I can do something for you."
+  },
+  {
+    "id": 6,
+    "dialogue": "As fellow grasshoppers, solidarity is important to us."
+  },
+  {
+    "id": 7,
+    "dialogue": "Helping a warrior grasshopper is a great opportunity."
+  },
+  {
+    "id": 8,
+    "dialogue": "By combining our strength, we can overcome this challenge."
+  },
+  {
+    "id": 9,
+    "dialogue": "Working together, we can win this underground adventure."
+  },
+  {
+    "id": 10,
+    "dialogue": "Together, we can conquer endless adversity."
+  }
+]

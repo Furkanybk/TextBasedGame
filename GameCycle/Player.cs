@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace TextBasedGame.GameCycle
 {
@@ -7,7 +8,8 @@ namespace TextBasedGame.GameCycle
         public override void GetHit(int damage)
         {
             base.GetHit(damage);
-            Console.WriteLine($"player take {damage} damage:");
+            Console.WriteLine($"You took {damage} damage"); 
+            Thread.Sleep(2000);
         }
     }
 }

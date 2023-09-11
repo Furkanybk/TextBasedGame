@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using TextBasedGame.GameCycle;
+using TextBasedGame.JSON.dialogues;
 
 namespace TextBasedGame.Manager
 {
@@ -11,20 +12,31 @@ namespace TextBasedGame.Manager
         Player player = new Player();
         Enemy enemy = new Enemy();
         FightManager fightManager = new FightManager();
+        Dialogue dialogue = new Dialogue();
         public void StartGame()
         {
+            if (player.Health == 0) player.Health = 100;
             PlayerInit();
             while (player.Health != 0)
             {
                 GetRandomEnemy();
                 fightManager.FightCycle(player, enemy);
+                if (fightManager.Room != 1) 
+                { 
+                    enemy.AttackDamage++;
+                    enemy.AbilityPower++;
+                    enemy.Defense++;
+                }
+                if (0 == fightManager.Room % 5) dialogue.BlacksmithRoom(player);
             }
         }
 
         public void PlayerInit()
         {
+            Console.Clear();
             Console.WriteLine("Enter a name: ");
             player.Name = Console.ReadLine();
+            Console.WriteLine();
             while (true)
             {
                 Console.WriteLine("Choose a weapon: ");
@@ -59,7 +71,6 @@ namespace TextBasedGame.Manager
                 }
             }
         }
-
 
         public Enemy GetRandomEnemy()
         {

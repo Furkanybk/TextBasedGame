@@ -36,6 +36,9 @@
     <Reference Include="Elasticsearch.Net, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <HintPath>packages\Elasticsearch.Net.7.17.5\lib\net461\Elasticsearch.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -64,6 +67,8 @@
   <ItemGroup>
     <Compile Include="GameCycle\Character.cs" />
     <Compile Include="GameCycle\Weapon.cs" />
+    <Compile Include="JSON\dialogues\Dialogue.cs" />
+    <Compile Include="JSON\Save\Save.cs" />
     <Compile Include="Managers\FightManager.cs" />
     <Compile Include="GameCycle\Enemy.cs" />
     <Compile Include="GameCycle\Player.cs" />
@@ -74,7 +79,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="JSON\dialogues\dialogue.json" />
-    <None Include="JSON\Save.json" />
+    <None Include="JSON\Save\Save.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

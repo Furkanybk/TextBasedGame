@@ -27,8 +27,9 @@ namespace TextBasedGame.GameCycle
     {
         public Dagger()
         {
-            AttackDamage = 10;
+            AttackDamage = 5;
             Defense = 2;
+            Agility = 6;
         }
     }
 
@@ -37,7 +38,8 @@ namespace TextBasedGame.GameCycle
         public Staff()
         {
             AttackDamage = 10;
-            Defense = 2;
+            Defense = 6;
+            Agility = 1;
         }
     }
 }

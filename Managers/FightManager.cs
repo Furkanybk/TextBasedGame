@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Numerics;
 using System.Threading;
 using TextBasedGame.GameCycle;
 
@@ -9,10 +10,18 @@ namespace TextBasedGame.Manager
     {
         Random random = new Random();
         private int _playerChoose;
-        private int _room = 1;
-        private int _enemyDamage;
-        private int _playerDamage;
+        public int Room = 1;
         private int _enemyChoose;
+
+        public void LookStats(Player player)
+        {
+            Console.WriteLine("Health" + player.Health);
+            Console.WriteLine("AttackDamage: " + player.AttackDamage);
+            Console.WriteLine("AbilityPower: " + player.AbilityPower);
+            Console.WriteLine("Defense" + player.Defense);
+            Console.WriteLine("Agility" + player.Agility);
+            Console.ReadKey();
+        }
 
         public void FightCycle(Player player, Enemy enemy)
         {
@@ -20,11 +29,12 @@ namespace TextBasedGame.Manager
             while (player.Health > 0 && enemy.Health > 0)
             {
                 Console.Clear();
-                Console.WriteLine($"Room {_room}");
+                Console.WriteLine($"Room {Room}");
                 Console.WriteLine($"Your Health: {player.Health} /  {enemy.Role} Health: {enemy.Health}");
                 Console.WriteLine("1-Attack");
                 Console.WriteLine("2-CounterAttack");
-                Console.WriteLine("3-Magic Damage");
+                Console.WriteLine("3-MagicAttack");
+                Console.WriteLine("4-LookStats");
                 try
                 {
                     _playerChoose = Convert.ToInt32(Console.ReadLine());
@@ -35,10 +45,30 @@ namespace TextBasedGame.Manager
                     Thread.Sleep(400);
                     continue;
                 }
+                if (_playerChoose == 4)
+                {
+                    LookStats(player);
+                    continue;
+                }
+
                 _enemyChoose = enemy.GetInput();
+                switch (_enemyChoose)
+                {
+                    case 1:
+                        Console.WriteLine(enemy.Role + " used Attack");
+                        break;
+                    case 2:
+                        Console.WriteLine(enemy.Role + " used CounterAttack");
+                        break;
+                    case 3:
+                        Console.WriteLine(enemy.Role + " used MagicAttack");
+                        break;
+                }
+
                 if (_playerChoose == _enemyChoose)
                 {
-                    Console.WriteLine("Berabere!");
+                    Console.WriteLine("Draw!");
+                    Thread.Sleep(1000);
                 }
                 else if ((_playerChoose == 1 && _enemyChoose == 3) ||
                          (_playerChoose == 2 && _enemyChoose == 1) ||
@@ -57,7 +87,7 @@ namespace TextBasedGame.Manager
                             break;
                         default:
                             Console.WriteLine("Please choose a valid option.");
-                            Thread.Sleep(400);
+                            Thread.Sleep(600);
                             continue;
                     }
                 }
@@ -81,8 +111,8 @@ namespace TextBasedGame.Manager
             if (player.Health > 0)
             {
                 Console.WriteLine($"{player.Name} kazandı!");
-                _room++;
-                Thread.Sleep(600);
+                Room++;
+                Thread.Sleep(1000);
             }
             else
             {

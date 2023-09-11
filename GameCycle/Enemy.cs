@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Numerics;
+using System.Threading;
 
 namespace TextBasedGame.GameCycle
 {
@@ -11,6 +11,13 @@ namespace TextBasedGame.GameCycle
         {
             return random.Next(1, 4);
         }
+
+        public override void GetHit(int damage)
+        {
+            base.GetHit(damage);
+            Console.WriteLine(Role + " take " + damage + " damage:");
+            Thread.Sleep(2000);
+        }
     }
 
     public class FireAnt : Enemy
@@ -18,8 +25,9 @@ namespace TextBasedGame.GameCycle
         public FireAnt()
         {
             Health = 40;
-            AttackDamage = 10;
+            AttackDamage = 6;
             Defense = 1;
+            AbilityPower = 10;
             Role = "FireAnt";
         }
     }
@@ -30,7 +38,8 @@ namespace TextBasedGame.GameCycle
         {
             Health = 60;
             AttackDamage = 6;
-            Defense = 5;
+            Defense = 6;
+            AbilityPower = 6;
             Role = "TankAnt";
         }
     }
@@ -40,8 +49,9 @@ namespace TextBasedGame.GameCycle
         public Ant()
         {
             Health = 50;
-            AttackDamage = 7;
+            AttackDamage = 10;
             Defense = 3;
+            AbilityPower = 9;
             Role = "Ant";
         }
     }
