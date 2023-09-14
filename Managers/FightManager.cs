@@ -116,14 +116,14 @@ namespace AntMaze.Manager
             if (player.Health > 0)
             {
                 Console.WriteLine($"{player.Name} kazandı!");
-                Room++;
+                player.CurrentRoom++;
                 save.SaveGame(player);
                 Thread.Sleep(1000);
             }
             else
             {
                 Console.WriteLine($"{enemy.Role} kazandı!");
-                Room = 0;
+                player.CurrentRoom = 0;
                 save.SaveGame(player);
                 Console.ReadKey();
             }
