@@ -18,9 +18,10 @@ namespace AntMaze.JSON.dialogues
         {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
-            string savePath = Path.Combine(projectDirectory, "JSON", "dialogue", pathName);
+            string savePath = Path.Combine(projectDirectory, "JSON", "dialogues", pathName);
             savePath = savePath.Replace('\\', '/');
             return savePath;
+        //C: \Users\Pofu\Desktop\Projects\GitHub\TextBasedGame\JSON\dialogues\dialogue.json
         }
         string savePath = PathFinder("dialogue.json");
 

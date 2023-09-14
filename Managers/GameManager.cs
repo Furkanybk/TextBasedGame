@@ -51,7 +51,7 @@ namespace AntMaze.Manager
                     enemy.AbilityPower++;
                     enemy.Defense++;
                 }
-                if (0 == fightManager.Room % 1) BlacksmithRoom(player);
+                if (0 == fightManager.Room % 5) BlacksmithRoom(player);
             }
         }
 
