@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading;
-using TextBasedGame.Manager;
+using AntMaze.Manager;
 
-namespace TextBasedGame
+namespace AntMaze
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            Console.Title = "Ant-Maze";
             GameManager gameManager = new GameManager();
 
             int x = 0;
@@ -16,7 +17,7 @@ namespace TextBasedGame
             {
                 Console.Clear();
                 Console.WriteLine("Welcome the Ant-Maze");
-                Console.WriteLine("1-Start Game");
+                Console.WriteLine("1-Start New Game");
                 Console.WriteLine("2-Load Game");
                 Console.WriteLine("3-Exit");
                 try
@@ -32,10 +33,10 @@ namespace TextBasedGame
                 switch (x)
                 {
                     case 1:
-                        gameManager.StartGame();
+                        gameManager.StartNewGame();
                         break;
                     case 2:
-
+                        gameManager.StartLoadedGame();
                         break;
                     case 3:
                         Environment.Exit(0);

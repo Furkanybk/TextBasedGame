@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace TextBasedGame.GameCycle
+namespace AntMaze.GameCycle
 {
     public class Enemy : Character 
     {
@@ -25,9 +25,9 @@ namespace TextBasedGame.GameCycle
         public FireAnt()
         {
             Health = 40;
-            AttackDamage = 6;
+            AttackDamage = 9;
             Defense = 1;
-            AbilityPower = 10;
+            AbilityPower = 9;
             Role = "FireAnt";
         }
     }
@@ -37,9 +37,9 @@ namespace TextBasedGame.GameCycle
         public TankAnt()
         {
             Health = 60;
-            AttackDamage = 6;
+            AttackDamage = 9;
             Defense = 6;
-            AbilityPower = 6;
+            AbilityPower = 9;
             Role = "TankAnt";
         }
     }
@@ -49,9 +49,9 @@ namespace TextBasedGame.GameCycle
         public Ant()
         {
             Health = 50;
-            AttackDamage = 10;
+            AttackDamage = 12;
             Defense = 3;
-            AbilityPower = 9;
+            AbilityPower = 12;
             Role = "Ant";
         }
     }

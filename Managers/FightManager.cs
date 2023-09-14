@@ -2,24 +2,28 @@
 using System.Diagnostics;
 using System.Numerics;
 using System.Threading;
-using TextBasedGame.GameCycle;
+using AntMaze.GameCycle;
+using AntMaze.JSON.Save;
 
-namespace TextBasedGame.Manager
+namespace AntMaze.Manager
 {
     internal class FightManager
     {
-        Random random = new Random();
+        SaveMethods save = new SaveMethods();   
         private int _playerChoose;
         public int Room = 1;
         private int _enemyChoose;
 
         public void LookStats(Player player)
         {
+            Console.Clear();
             Console.WriteLine("Health" + player.Health);
             Console.WriteLine("AttackDamage: " + player.AttackDamage);
             Console.WriteLine("AbilityPower: " + player.AbilityPower);
-            Console.WriteLine("Defense" + player.Defense);
-            Console.WriteLine("Agility" + player.Agility);
+            Console.WriteLine("Defense: " + player.Defense);
+            Console.WriteLine("Agility: " + player.Agility);
+            Console.WriteLine("Press enter to return the fight:");
+            save.SaveGame(player);
             Console.ReadKey();
         }
 
@@ -29,6 +33,7 @@ namespace TextBasedGame.Manager
             while (player.Health > 0 && enemy.Health > 0)
             {
                 Console.Clear();
+                player.CurrentRoom = Room;
                 Console.WriteLine($"Room {Room}");
                 Console.WriteLine($"Your Health: {player.Health} /  {enemy.Role} Health: {enemy.Health}");
                 Console.WriteLine("1-Attack");
@@ -112,11 +117,14 @@ namespace TextBasedGame.Manager
             {
                 Console.WriteLine($"{player.Name} kazandı!");
                 Room++;
+                save.SaveGame(player);
                 Thread.Sleep(1000);
             }
             else
             {
                 Console.WriteLine($"{enemy.Role} kazandı!");
+                Room = 0;
+                save.SaveGame(player);
                 Console.ReadKey();
             }
         }

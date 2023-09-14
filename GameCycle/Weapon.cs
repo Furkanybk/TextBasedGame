@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextBasedGame.GameCycle
+namespace AntMaze.GameCycle
 {
     public abstract class Weapon 
     {
@@ -18,8 +18,10 @@ namespace TextBasedGame.GameCycle
     {
         public LongSword()
         {
-            AttackDamage = 10;
+            AttackDamage = 15;
             Defense = 2;
+            Agility = 3;
+            AbilityPower = 9;
         }
     }
 
@@ -27,9 +29,10 @@ namespace TextBasedGame.GameCycle
     {
         public Dagger()
         {
-            AttackDamage = 5;
+            AttackDamage = 10;
             Defense = 2;
-            Agility = 6;
+            Agility = 7;
+            AbilityPower= 8;
         }
     }
 
@@ -37,9 +40,10 @@ namespace TextBasedGame.GameCycle
     {
         public Staff()
         {
-            AttackDamage = 10;
-            Defense = 6;
-            Agility = 1;
+            AbilityPower = 16;
+            AttackDamage = 8;
+            Defense = 5;
+            Agility = 2;
         }
     }
 }

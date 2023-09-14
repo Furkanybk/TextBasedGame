@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Threading;
-using TextBasedGame.GameCycle;
-using TextBasedGame.JSON.dialogues;
+using AntMaze.GameCycle;
+using AntMaze.JSON.dialogues;
+using AntMaze.JSON.Save;
 
-namespace TextBasedGame.Manager
+namespace AntMaze.Manager
 {
     public class GameManager
     {
         int choose;
+        private int _choose;
         public Random random = new Random();
         Player player = new Player();
         Enemy enemy = new Enemy();
         FightManager fightManager = new FightManager();
-        Dialogue dialogue = new Dialogue();
-        public void StartGame()
+        DialogueMethods dialogue = new DialogueMethods();
+        SaveMethods save = new SaveMethods();
+        public void StartNewGame()
         {
             if (player.Health == 0) player.Health = 100;
             PlayerInit();
@@ -21,13 +24,34 @@ namespace TextBasedGame.Manager
             {
                 GetRandomEnemy();
                 fightManager.FightCycle(player, enemy);
-                if (fightManager.Room != 1) 
-                { 
+                if (fightManager.Room != 1)
+                {
                     enemy.AttackDamage++;
                     enemy.AbilityPower++;
                     enemy.Defense++;
                 }
-                if (0 == fightManager.Room % 5) dialogue.BlacksmithRoom(player);
+                if (0 == fightManager.Room % 1) BlacksmithRoom(player);
+            }
+        }
+
+        public void StartLoadedGame()
+        {
+            Console.Clear();
+            player.PlayerWeapon = new LongSword();
+            player.PlayerReset(player);
+            player = save.LoadGame(player);
+            while (player.Health != 0 && player !=null)
+            {
+                if (player.AttackDamage == 0) break;
+                GetRandomEnemy();
+                fightManager.FightCycle(player, enemy);
+                if (fightManager.Room != 1)
+                {
+                    enemy.AttackDamage++;
+                    enemy.AbilityPower++;
+                    enemy.Defense++;
+                }
+                if (0 == fightManager.Room % 1) BlacksmithRoom(player);
             }
         }
 
@@ -87,6 +111,39 @@ namespace TextBasedGame.Manager
                 default:
                     return null;
             }
+        }
+
+        public void BlacksmithRoom(Player player)
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to grasshopper blacksmith:");
+            Console.WriteLine(dialogue.WriteRandomDialogue());
+            Console.WriteLine("Choose something");
+            Console.WriteLine("1-Health orb");
+            Console.WriteLine("2-Magical necklace");
+            Console.WriteLine("3-Warrior ring");
+            Console.WriteLine("4-Athletic boots");
+            Console.WriteLine("5-Piece of armor");
+             _choose = int.Parse(Console.ReadLine());
+            switch (_choose)
+            {
+                case 1:
+                    player.Health += 5;
+                    break;
+                case 2:
+                    player.AbilityPower += 3;
+                    break;
+                case 3:
+                    player.AttackDamage += 3;
+                    break;
+                case 4:
+                    player.Agility += 5;
+                    break;
+                case 5:
+                    player.Defense += 2;
+                    break;
+            }
+            Thread.Sleep(1000);
         }
     }
 }

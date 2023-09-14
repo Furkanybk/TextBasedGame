@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextBasedGame.GameCycle
+namespace AntMaze.GameCycle
 {
     public abstract class Character
     {
@@ -63,10 +63,10 @@ namespace TextBasedGame.GameCycle
 
         public Weapon PlayerWeapon;
 
-        private int _defense;
-        private int _attackDamage;
-        private int _abilityPower;
-        private int _agility;
+        public int _defense;
+        public int _attackDamage;
+        public int _abilityPower;
+        public int _agility;
 
         public Character()
         {
