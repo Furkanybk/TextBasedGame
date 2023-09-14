@@ -57,7 +57,7 @@ namespace AntMaze.JSON.Save
 
         public void SaveGame(Player player)
         {
-            Save existingSave = Saves.Find(match => match.Id == player.Id);
+            Save existingSave = Saves.Find(match => match.Id == nextId);
 
             if (existingSave != null)
             {
@@ -90,10 +90,30 @@ namespace AntMaze.JSON.Save
             File.WriteAllText(savePath, json);
         }
 
+        public void LoadSaveGame(Player player)
+        {
+
+            Save existingSave = Saves.Find(match => match.Id == player.Id);
+            if (existingSave != null)
+            {
+
+                existingSave.Name = player.Name;
+                existingSave.Room = player.CurrentRoom;
+                existingSave.Health = player.Health;
+                existingSave.AttackDamage = player.AttackDamage;
+                existingSave.AbilityPower = player.AbilityPower;
+                existingSave.Agility = player.Agility;
+                existingSave.Defense = player.Defense;
+            }
+            string json = JsonConvert.SerializeObject(Saves);
+            File.WriteAllText(savePath, json);
+        }
+
         public Player LoadGame(Player player)
         {
             string json;
             int playerChoose;
+            bool controle = true;
             while (player.Name == null)
             {
                 try { json = File.ReadAllText(savePath); }
@@ -104,25 +124,28 @@ namespace AntMaze.JSON.Save
                     break;
                 }
                 List<Save> loadedSaves = JsonConvert.DeserializeObject<List<Save>>(json);
-
-
-                foreach (Save save in loadedSaves)
+                foreach (Save loadedSave in loadedSaves)
                 {
-                    if (save.Name == null)
-                    {
-                         controll = true;
-                        break;
-                    }
-                    Console.WriteLine(save.Id + "-)");
-                    Console.WriteLine("Name: " + save.Name);
-                    Console.WriteLine("Room: " + save.Room);
-                    Console.WriteLine("-----------------");
+                    if (loadedSave.Name == null) controle = false;
+                    if (loadedSave.AttackDamage == 0) controle = false;
+                    if (loadedSave.AttackDamage != 0) controle = true;
                 }
-                if (controll == true)
+                if (controle == false)
                 {
                     Console.WriteLine("Save not found:");
                     Thread.Sleep(1000);
                     break;
+                }
+
+
+                foreach (Save save in loadedSaves)
+                {
+
+                    if (save.Name == null) { continue;}
+                    Console.WriteLine(save.Id + "-)");
+                    Console.WriteLine("Name: " + save.Name);
+                    Console.WriteLine("Room: " + save.Room);
+                    Console.WriteLine("-----------------");
                 }
                 try { playerChoose = Convert.ToInt32(Console.ReadLine()); }
                 catch
@@ -133,6 +156,7 @@ namespace AntMaze.JSON.Save
                 Save existingSave = loadedSaves.Find(x => x.Id == playerChoose);
                 if (existingSave != null)
                 {
+                    player.Id = existingSave.Id;
                     player.Name = existingSave.Name;
                     player.CurrentRoom = existingSave.Room;
                     player.Health = existingSave.Health;

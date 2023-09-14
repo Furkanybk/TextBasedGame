@@ -9,7 +9,7 @@ namespace AntMaze.Manager
 {
     internal class FightManager
     {
-        SaveMethods save = new SaveMethods();   
+        
         private int _playerChoose;
         public int Room = 1;
         private int _enemyChoose;
@@ -22,8 +22,7 @@ namespace AntMaze.Manager
             Console.WriteLine("AbilityPower: " + player.AbilityPower);
             Console.WriteLine("Defense: " + player.Defense);
             Console.WriteLine("Agility: " + player.Agility);
-            Console.WriteLine("Press enter to return the fight:");
-            save.SaveGame(player);
+            Console.WriteLine("Press enter to return the fight:");       
             Console.ReadKey();
         }
 
@@ -33,7 +32,8 @@ namespace AntMaze.Manager
             while (player.Health > 0 && enemy.Health > 0)
             {
                 Console.Clear();
-                player.CurrentRoom = Room;
+                if (player.CurrentRoom > Room) Room = player.CurrentRoom;
+                else player.CurrentRoom = Room;
                 Console.WriteLine($"Room {Room}");
                 Console.WriteLine($"Your Health: {player.Health} /  {enemy.Role} Health: {enemy.Health}");
                 Console.WriteLine("1-Attack");
@@ -118,15 +118,13 @@ namespace AntMaze.Manager
                 Console.WriteLine($"{player.Name} kazandı!");
                 Room++;
                 player.CurrentRoom++;
-                save.SaveGame(player);
                 Thread.Sleep(1000);
             }
             else
             {
                 Console.WriteLine($"{enemy.Role} kazandı!");
                 Room++;
-                player.CurrentRoom = 0;
-                save.SaveGame(player);
+                player.CurrentRoom = 0;              
                 Console.ReadKey();
             }
         }
