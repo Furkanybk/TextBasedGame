@@ -55,7 +55,7 @@ namespace AntMaze.Manager
                     LookStats(player);
                     continue;
                 }
-
+                if (_playerChoose == 2 || _playerChoose == 1 || _playerChoose == 3 || _playerChoose == 4) continue;
                 _enemyChoose = enemy.GetInput();
                 switch (_enemyChoose)
                 {
