@@ -26,7 +26,7 @@ namespace AntMaze.JSON.dialogues
 
         public string WriteRandomDialogue()
         {
-            string json = System.IO.File.ReadAllText("C:/Users/Pofu/Desktop/Projects/GitHub/TextBasedGame/JSON/dialogues/dialogue.json");
+            string json = System.IO.File.ReadAllText(savePath);
             List<DialogueMethods> dialogues = JsonConvert.DeserializeObject<List<DialogueMethods>>(json);
             int randomIndex = random.Next(0, dialogues.Count);
             DialogueMethods randomDialogue = dialogues[randomIndex];

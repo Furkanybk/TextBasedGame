@@ -24,7 +24,8 @@ namespace AntMaze.JSON.Save
     {
         public List<Save> Saves { get; set; }
         private int nextId = 1;
-     
+        public bool controll = false;
+
         public static string PathFinder(string pathName)
         {
             string workingDirectory = Environment.CurrentDirectory;
@@ -107,10 +108,21 @@ namespace AntMaze.JSON.Save
 
                 foreach (Save save in loadedSaves)
                 {
+                    if (save.Name == null)
+                    {
+                         controll = true;
+                        break;
+                    }
                     Console.WriteLine(save.Id + "-)");
                     Console.WriteLine("Name: " + save.Name);
                     Console.WriteLine("Room: " + save.Room);
                     Console.WriteLine("-----------------");
+                }
+                if (controll == true)
+                {
+                    Console.WriteLine("Save not found:");
+                    Thread.Sleep(1000);
+                    break;
                 }
                 try { playerChoose = Convert.ToInt32(Console.ReadLine()); }
                 catch
@@ -132,6 +144,7 @@ namespace AntMaze.JSON.Save
                 else
                 {
                     Console.WriteLine("No such save found:");
+                    break;
                 }
             }
             return player;
