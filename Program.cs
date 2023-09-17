@@ -11,7 +11,7 @@ namespace AntMaze
             Console.Title = "Ant-Maze";
             GameManager gameManager = new GameManager();
 
-            int x = 0;
+            int choose = 0;
 
             while (true)
             {
@@ -22,7 +22,7 @@ namespace AntMaze
                 Console.WriteLine("3-Exit");
                 try
                 {
-                    x = Convert.ToInt32(Console.ReadLine());
+                    choose = Convert.ToInt32(Console.ReadLine());
                 }
                 catch
                 {
@@ -30,7 +30,7 @@ namespace AntMaze
                     Thread.Sleep(500);
                 }
 
-                switch (x)
+                switch (choose)
                 {
                     case 1:
                         gameManager.StartNewGame();

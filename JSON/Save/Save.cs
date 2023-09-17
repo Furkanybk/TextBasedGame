@@ -10,21 +10,22 @@ namespace AntMaze.JSON.Save
 {
     public class Save
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Room { get; set; }
-        public int Health { get; set; }
-        public int AttackDamage { get; set; }
-        public int AbilityPower { get; set; }
-        public int Agility { get; set; }
-        public int Defense { get; set; }
+        public int Id;
+        public string Name;
+        public int Room;
+        public int Health;
+        public int AttackDamage;
+        public int AbilityPower;
+        public int Agility;
+        public int Defense;
     }
 
     public class SaveMethods
     {
-        public List<Save> Saves { get; set; }
-        private int nextId = 1;
-        public bool controll = false;
+        public List<Save> Saves;
+        private int _nextId = 1;
+        private bool _control = false;
+        private string _savePath;
 
         public static string PathFinder(string pathName)
         {
@@ -34,14 +35,14 @@ namespace AntMaze.JSON.Save
             savePath = savePath.Replace('\\', '/');
             return savePath;
         }
-        string savePath = PathFinder("Save.json");
 
         public SaveMethods()
         {
+            _savePath = PathFinder("Save.json");
 
-            if (File.Exists(savePath))
+            if (File.Exists(_savePath))
             {
-                string json = File.ReadAllText(savePath);
+                string json = File.ReadAllText(_savePath);
                 Saves = JsonConvert.DeserializeObject<List<Save>>(json);
             }
             else
@@ -51,13 +52,13 @@ namespace AntMaze.JSON.Save
 
             if (Saves.Count > 0)
             {
-                nextId = Saves.Max(s => s.Id) + 1;
+                _nextId = Saves.Max(s => s.Id) + 1;
             }
         }
 
         public void SaveGame(Player player)
         {
-            Save existingSave = Saves.Find(match => match.Id == nextId);
+            Save existingSave = Saves.Find(match => match.Id == _nextId);
 
             if (existingSave != null)
             {
@@ -75,7 +76,7 @@ namespace AntMaze.JSON.Save
                 // Yeni bir kayıt oluştur
                 Save save = new Save
                 {
-                    Id = nextId,
+                    Id = _nextId,
                     Name = player.Name,
                     Room = player.CurrentRoom,
                     Health = player.Health,
@@ -87,7 +88,7 @@ namespace AntMaze.JSON.Save
                 Saves.Add(save);
             }
             string json = JsonConvert.SerializeObject(Saves);
-            File.WriteAllText(savePath, json);
+            File.WriteAllText(_savePath, json);
         }
 
         public void LoadSaveGame(Player player)
@@ -106,7 +107,7 @@ namespace AntMaze.JSON.Save
                 existingSave.Defense = player.Defense;
             }
             string json = JsonConvert.SerializeObject(Saves);
-            File.WriteAllText(savePath, json);
+            File.WriteAllText(_savePath, json);
         }
 
         public Player LoadGame(Player player)
@@ -116,7 +117,7 @@ namespace AntMaze.JSON.Save
             bool controle = true;
             while (player.Name == null)
             {
-                try { json = File.ReadAllText(savePath); }
+                try { json = File.ReadAllText(_savePath); }
                 catch
                 {
                     Console.WriteLine("Save not found:");
@@ -141,7 +142,7 @@ namespace AntMaze.JSON.Save
                 foreach (Save save in loadedSaves)
                 {
 
-                    if (save.Name == null) { continue;}
+                    if (save.Name == null) { continue; }
                     Console.WriteLine(save.Id + "-)");
                     Console.WriteLine("Name: " + save.Name);
                     Console.WriteLine("Room: " + save.Room);
@@ -167,7 +168,7 @@ namespace AntMaze.JSON.Save
                 }
                 else
                 {
-                    Console.WriteLine("No such save found:");
+                    Console.WriteLine("No such _save found:");
                     break;
                 }
             }

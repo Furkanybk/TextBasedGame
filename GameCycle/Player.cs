@@ -5,7 +5,7 @@ namespace AntMaze.GameCycle
 {
     public class Player : Character
     {
-        public int Id { get; set; }
+        public int Id;
         public int CurrentRoom;
         public override void GetHit(int damage)
         {
@@ -16,10 +16,10 @@ namespace AntMaze.GameCycle
 
         public Player PlayerReset(Player player) 
         {
-            player._defense = 0;
-            player._abilityPower = 0;
-            player._defense = 0;
-            player._attackDamage = 0;
+            player.WeaponDefense = 0;
+            player.WeaponAgilityPower = 0;
+            player.WeaponDefense = 0;
+            player.WeaponAttackDamage = 0;
             player.PlayerWeapon.AttackDamage = 0;
             player.PlayerWeapon.Agility = 0;
             player.PlayerWeapon.Defense = 0;

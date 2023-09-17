@@ -8,19 +8,19 @@ namespace AntMaze.GameCycle
 {
     public abstract class Character
     {
-        public string Name { get; set; }
-        public int Health { get; set; }
+        public string Name;
+        public int Health;
         public int AbilityPower
         {
             get
             {
                 if (PlayerWeapon != null)
                 {
-                    return _abilityPower + PlayerWeapon.AbilityPower;
+                    return WeaponAgilityPower + PlayerWeapon.AbilityPower;
                 }
-                else { return _abilityPower; }
+                else { return WeaponAgilityPower; }
             }
-            set => _attackDamage = value;
+            set => WeaponAttackDamage = value;
         }
         public int Agility
         {
@@ -28,11 +28,11 @@ namespace AntMaze.GameCycle
             {
                 if (PlayerWeapon != null)
                 {
-                    return _agility + PlayerWeapon.Agility;
+                    return WeaponAgility + PlayerWeapon.Agility;
                 }
-                else { return _agility; }
+                else { return WeaponAgility; }
             }
-            set => _attackDamage = value;
+            set => WeaponAttackDamage = value;
         }
         public int AttackDamage
         {
@@ -40,12 +40,12 @@ namespace AntMaze.GameCycle
             {
                 if (PlayerWeapon != null)
                 {
-                    return _attackDamage + PlayerWeapon.AttackDamage;
+                    return WeaponAttackDamage + PlayerWeapon.AttackDamage;
                 }
-                else { return _attackDamage; }
+                else { return WeaponAttackDamage; }
             }
 
-            set => _attackDamage = value;
+            set => WeaponAttackDamage = value;
         }
         public int Defense
         {
@@ -53,20 +53,20 @@ namespace AntMaze.GameCycle
             {
                 if (PlayerWeapon != null)
                 {
-                    return _defense + PlayerWeapon.Defense;
+                    return WeaponDefense + PlayerWeapon.Defense;
                 }
-                else { return _defense; }
+                else { return WeaponDefense; }
             }
 
-            set => _defense = value;
+            set => WeaponDefense = value;
         }
 
         public Weapon PlayerWeapon;
 
-        public int _defense;
-        public int _attackDamage;
-        public int _abilityPower;
-        public int _agility;
+        public int WeaponDefense;
+        public int WeaponAttackDamage;
+        public int WeaponAgilityPower;
+        public int WeaponAgility;
 
         public Character()
         {

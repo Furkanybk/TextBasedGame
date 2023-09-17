@@ -8,60 +8,60 @@ namespace AntMaze.Manager
 {
     public class GameManager
     {
-        int choose;
         private int _choose;
-        public Random random = new Random();
-        Player player = new Player();
-        Enemy enemy = new Enemy();
-        FightManager fightManager = new FightManager();
-        DialogueMethods dialogue = new DialogueMethods();
-        SaveMethods save = new SaveMethods();
+        private Random _random = new Random();
+        private Player _player = new Player();
+        private Enemy _enemy = new Enemy();
+        private FightManager _fightManager = new FightManager();
+        private DialogueMethods _dialogue = new DialogueMethods();
+        private SaveMethods _save = new SaveMethods();
+
         public void StartNewGame()
         {
-            if (player.Health == 0) player.Health = 100;
+            if (_player.Health == 0) _player.Health = 100;
             PlayerInit();
-            while (player.Health != 0)
+            while (_player.Health != 0)
             {
                 GetRandomEnemy();
-                fightManager.FightCycle(player, enemy);
-                if (fightManager.Room != 1)
+                _fightManager.FightCycle(_player, _enemy, _random);
+                if (_fightManager.Room != 1)
                 {
-                    enemy.AttackDamage++;
-                    enemy.AbilityPower++;
-                    enemy.Defense++;
+                    _enemy.AttackDamage++;
+                    _enemy.AbilityPower++;
+                    _enemy.Defense++;
                 }
-                save.SaveGame(player);
-                if (0 == fightManager.Room % 5) BlacksmithRoom(player);
+                _save.SaveGame(_player);
+                if (0 == _fightManager.Room % 5) BlacksmithRoom(_player, _random);
             }
         }
 
         public void StartLoadedGame()
         {
             Console.Clear();
-            player.PlayerWeapon = new LongSword();
-            player.PlayerReset(player);
-            player = save.LoadGame(player);
-            while (player.Health != 0 && player !=null)
+            _player.PlayerWeapon = new LongSword();
+            _player.PlayerReset(_player);
+            _player = _save.LoadGame(_player);
+            while (_player.Health != 0 && _player != null)
             {
-                if (player.AttackDamage == 0) break;
+                if (_player.AttackDamage == 0) break;
                 GetRandomEnemy();
-                fightManager.FightCycle(player, enemy);
-                if (fightManager.Room != 1)
+                _fightManager.FightCycle(_player, _enemy, _random);
+                if (_fightManager.Room != 1)
                 {
-                    enemy.AttackDamage++;
-                    enemy.AbilityPower++;
-                    enemy.Defense++;
+                    _enemy.AttackDamage++;
+                    _enemy.AbilityPower++;
+                    _enemy.Defense++;
                 }
-                save.LoadSaveGame(player);
-                if (0 == player.CurrentRoom % 5 && player.Health != 5) BlacksmithRoom(player);
+                _save.LoadSaveGame(_player);
+                if (0 == _player.CurrentRoom % 5 && _player.Health != 5) BlacksmithRoom(_player, _random);
             }
         }
 
-        public void PlayerInit()
+        private void PlayerInit()
         {
             Console.Clear();
             Console.WriteLine("Enter a name: ");
-            player.Name = Console.ReadLine();
+            _player.Name = Console.ReadLine();
             Console.WriteLine();
             while (true)
             {
@@ -71,17 +71,17 @@ namespace AntMaze.Manager
                 Console.WriteLine("3-Staff");
                 try
                 {
-                    choose = Convert.ToInt32(Console.ReadLine());
-                    switch (choose)
+                    _choose = Convert.ToInt32(Console.ReadLine());
+                    switch (_choose)
                     {
                         case 1:
-                            player.PlayerWeapon = new LongSword();
+                            _player.PlayerWeapon = new LongSword();
                             break;
                         case 2:
-                            player.PlayerWeapon = new Dagger();
+                            _player.PlayerWeapon = new Dagger();
                             break;
                         case 3:
-                            player.PlayerWeapon = new Staff();
+                            _player.PlayerWeapon = new Staff();
                             break;
                         default:
                             Console.WriteLine("Please choose a valid option: ");
@@ -98,35 +98,39 @@ namespace AntMaze.Manager
             }
         }
 
-        public Enemy GetRandomEnemy()
+        private void GetRandomEnemy()
         {
-            int randomNumber = random.Next(1, 4); 
+            int randomNumber = _random.Next(1, 4);
 
             switch (randomNumber)
             {
                 case 1:
-                    return enemy = new FireAnt();
+                    _enemy = new FireAnt();
+                    break;
                 case 2:
-                    return enemy = new TankAnt();
+                    _enemy = new TankAnt();
+                    break;
                 case 3:
-                    return enemy = new Ant();
+                    _enemy = new Ant();
+                    break;
                 default:
-                    return null;
+                    _enemy = null;
+                    break;
             }
         }
 
-        public void BlacksmithRoom(Player player)
+        private void BlacksmithRoom(Player player, Random random)
         {
             Console.Clear();
             Console.WriteLine("Welcome to grasshopper blacksmith:");
-            Console.WriteLine(dialogue.WriteRandomDialogue());
+            Console.WriteLine(_dialogue.WriteRandomDialogue(random));
             Console.WriteLine("Choose something");
             Console.WriteLine("1-Health orb");
             Console.WriteLine("2-Magical necklace");
             Console.WriteLine("3-Warrior ring");
             Console.WriteLine("4-Athletic boots");
             Console.WriteLine("5-Piece of armor");
-             _choose = int.Parse(Console.ReadLine());
+            _choose = int.Parse(Console.ReadLine());
             switch (_choose)
             {
                 case 1:

@@ -26,7 +26,7 @@ namespace AntMaze.Manager
             Console.ReadKey();
         }
 
-        public void FightCycle(Player player, Enemy enemy)
+        public void FightCycle(Player player, Enemy enemy ,Random random)
         {
             Console.Clear();
             while (player.Health > 0 && enemy.Health > 0)
@@ -56,7 +56,7 @@ namespace AntMaze.Manager
                     continue;
                 }
                 if ( _playerChoose != 2 && _playerChoose != 1 && _playerChoose != 3 && _playerChoose != 4) continue;
-                _enemyChoose = enemy.GetInput();
+                _enemyChoose = enemy.GetInput(random);
                 switch (_enemyChoose)
                 {
                     case 1:

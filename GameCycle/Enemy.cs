@@ -5,9 +5,9 @@ namespace AntMaze.GameCycle
 {
     public class Enemy : Character 
     {
-        public string Role { get; set; }
-        Random random = new Random();
-        public int GetInput()
+        public string Role;
+        
+        public int GetInput(Random random)
         {
             return random.Next(1, 4);
         }
