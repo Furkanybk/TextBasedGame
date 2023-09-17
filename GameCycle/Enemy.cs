@@ -3,10 +3,10 @@ using System.Threading;
 
 namespace AntMaze.GameCycle
 {
-    public class Enemy : Character 
+    public class Enemy : Character
     {
         public string Role;
-        
+
         public int GetInput(Random random)
         {
             return random.Next(1, 4);
@@ -17,6 +17,27 @@ namespace AntMaze.GameCycle
             base.GetHit(damage);
             Console.WriteLine(Role + " take " + damage + " damage:");
             Thread.Sleep(2000);
+        }
+
+        public void GetRandomEnemy(Enemy enemy, Random random)
+        {
+            int randomNumber = random.Next(1, 4);
+
+            switch (randomNumber)
+            {
+                case 1:
+                    enemy = new FireAnt();
+                    break;
+                case 2:
+                    enemy = new TankAnt();
+                    break;
+                case 3:
+                    enemy = new Ant();
+                    break;
+                default:
+                    enemy = null;
+                    break;
+            }
         }
     }
 

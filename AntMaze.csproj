@@ -75,6 +75,7 @@
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rooms\BlacksmithRoom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
