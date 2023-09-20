@@ -9,12 +9,10 @@ namespace AntMaze.Manager
 {
     public class GameManager
     {
-        private int _choose;
         private Random _random = new Random();
         private Player _player = new Player();
         private Enemy _enemy = new Enemy();
         private FightManager _fightManager = new FightManager();
-        private DialogueMethods _dialogue = new DialogueMethods();
         private SaveMethods _save = new SaveMethods();
         private BlacksmithRoom room = new BlacksmithRoom();
 
@@ -24,8 +22,8 @@ namespace AntMaze.Manager
             _player.PlayerInit(_player);
             while (_player.Health != 0)
             {
-                _enemy.GetRandomEnemy(_enemy, _random);
-                _fightManager.FightCycle(_player, _enemy, _random);
+                _enemy.GetRandomEnemy(_enemy);
+                _fightManager.FightCycle(_player, _enemy);
                 if (_fightManager.Room != 1)
                 {
                     _enemy.AttackDamage++;
@@ -33,7 +31,7 @@ namespace AntMaze.Manager
                     _enemy.Defense++;
                 }
                 _save.SaveGame(_player);
-                if (0 == _fightManager.Room % 5) room.CallBlacksmithRoom(_player, _random);
+                if (0 == _fightManager.Room % 5) room.CallBlacksmithRoom(_player);
             }
         }
 
@@ -46,8 +44,8 @@ namespace AntMaze.Manager
             while (_player.Health != 0 && _player != null)
             {
                 if (_player.AttackDamage == 0) break;
-                _enemy.GetRandomEnemy(_enemy, _random);
-                _fightManager.FightCycle(_player, _enemy, _random);
+                _enemy.GetRandomEnemy(_enemy);
+                _fightManager.FightCycle(_player, _enemy);
                 if (_fightManager.Room != 1)
                 {
                     _enemy.AttackDamage++;
@@ -55,7 +53,7 @@ namespace AntMaze.Manager
                     _enemy.Defense++;
                 }
                 _save.LoadSaveGame(_player);
-                if (0 == _player.CurrentRoom % 5 && _player.Health != 5) room.CallBlacksmithRoom(_player, _random);
+                if (0 == _player.CurrentRoom % 5 && _player.Health != 5) room.CallBlacksmithRoom(_player);
             }
         }
     }

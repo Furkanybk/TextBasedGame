@@ -27,7 +27,7 @@ namespace AntMaze.JSON.Save
         private bool _control = false;
         private string _savePath;
 
-        public static string PathFinder(string pathName)
+        public string PathFinder(string pathName)
         {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;

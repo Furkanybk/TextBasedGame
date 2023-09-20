@@ -6,10 +6,11 @@ namespace AntMaze.GameCycle
     public class Enemy : Character
     {
         public string Role;
+        private Random _random = new Random();
 
-        public int GetInput(Random random)
+        public int GetInput()
         {
-            return random.Next(1, 4);
+            return _random.Next(1, 4);
         }
 
         public override void GetHit(int damage)
@@ -19,9 +20,9 @@ namespace AntMaze.GameCycle
             Thread.Sleep(2000);
         }
 
-        public void GetRandomEnemy(Enemy enemy, Random random)
+        public void GetRandomEnemy(Enemy enemy)
         {
-            int randomNumber = random.Next(1, 4);
+            int randomNumber = _random.Next(1, 4);
 
             switch (randomNumber)
             {

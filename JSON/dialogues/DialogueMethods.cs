@@ -10,6 +10,7 @@ namespace AntMaze.JSON.dialogues
         public int Id;
         public string Dialogue;
         public string SavePath;
+        private Random _random = new Random();
 
         private string PathFinder(string pathName)
         {
@@ -20,14 +21,14 @@ namespace AntMaze.JSON.dialogues
             return savePath;
         }
       
-        public string WriteRandomDialogue(Random random)
+        public void WriteRandomDialogue()
         {
             SavePath = PathFinder("dialogue.json");
             string json = System.IO.File.ReadAllText(SavePath);
             List<DialogueMethods> dialogues = JsonConvert.DeserializeObject<List<DialogueMethods>>(json);
-            int randomIndex = random.Next(0, dialogues.Count);
+            int randomIndex =_random.Next(0, dialogues.Count);
             DialogueMethods randomDialogue = dialogues[randomIndex];
-            return randomDialogue.Dialogue;
+            Console.WriteLine(randomDialogue.Dialogue); 
         }
     }
 }

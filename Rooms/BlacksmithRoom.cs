@@ -1,11 +1,7 @@
 ﻿using AntMaze.GameCycle;
 using AntMaze.JSON.dialogues;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TextBasedGame.Rooms
 {
@@ -13,11 +9,11 @@ namespace TextBasedGame.Rooms
     {
         private DialogueMethods _dialogue = new DialogueMethods();
         private int _choose;
-        public void CallBlacksmithRoom(Player player, Random random)
+        public void CallBlacksmithRoom(Player player)
         {
             Console.Clear();
             Console.WriteLine("Welcome to grasshopper blacksmith:");
-            Console.WriteLine(_dialogue.WriteRandomDialogue(random));
+            _dialogue.WriteRandomDialogue();
             Console.WriteLine("Choose something");
             Console.WriteLine("1-Health orb");
             Console.WriteLine("2-Magical necklace");
